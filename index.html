@@ -1231,7 +1231,7 @@ function stopSync(ok){ g('sync-bar').classList.remove('loading'); setConnStatus(
 async function apiGet(sheet){
   if(IS_DEMO) return loadDemo(sheet);
   try {
-    const res = await fetch(API_URL + '?action=getAll&sheet=' + encodeURIComponent(sheet), {redirect:'follow'});
+    const res = await fetch('https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec?action=getAll&sheet=' + encodeURIComponent(sheet), {redirect:'follow'});
     if(!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
     const data = JSON.parse(text);
@@ -1242,6 +1242,7 @@ async function apiGet(sheet){
     return loadDemo(sheet);
   }
 }
+
 
 async function apiPost(sheet,row){
   const result = await apiCall({action:'insert',sheet,row});
@@ -1534,7 +1535,7 @@ function renderAcademyTable(f='',sf=''){
     <td>${statusBadge(r.status)}</td><td class="mono" style="font-size:11px">${fmtDate(r.date)}</td>
     <td>
       <a href="https://wa.me/91${r.phone}?text=${encodeURIComponent('UK International se aapka invoice ready hai. Course: '+r.course+' | Paid: '+fmt(r.paid)+' | Balance: '+fmt(r.balance))}" target="_blank"><button class="btn btn-ghost btn-sm">💬</button></a>
-      <button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},"Academy")'>🧾</button>
+      <button class="btn btn-ghost btn-sm" onclick="showInvoiceById('${r.id||r.ID}','Academy')" style="font-size:13px">🧾 Bill</button>
     </td>
   </tr>`).join('');
 }
@@ -1549,7 +1550,7 @@ function renderSalonTable(f=''){
     <td>${srcBadge(r.source)}</td><td class="mono">${fmt(r.final)}</td>
     <td class="mono g">${fmt(r.paid)}</td><td>${statusBadge(r.status)}</td>
     <td class="mono" style="font-size:11px">${fmtDate(r.date)}</td>
-    <td><button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},&quot;Salon&quot;)'>🧾</button></td>
+    <td><button class="btn btn-ghost btn-sm" onclick="showInvoiceById('${r.id||r.ID}','Salon')" style="font-size:13px">🧾 Bill</button></td>
   </tr>`).join('');
 }
 
@@ -1564,7 +1565,7 @@ function renderBridalTable(sf=''){
     <td class="mono">${fmt(r.total)}</td><td class="mono g">${fmt(r.advance)}</td>
     <td class="mono" style="color:${r.balance>0?'var(--rose)':'var(--green)'}">${fmt(r.balance)}</td>
     <td><span class="badge ${r.status==='Confirmed'?'b-confirmed':r.status==='Completed'?'b-completed':'b-upcoming'}">${r.status}</span></td>
-    <td><button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},"Bridal")'>🧾</button></td>
+    <td><button class="btn btn-ghost btn-sm" onclick="showInvoiceById('${r.id||r.ID}','Bridal')" style="font-size:13px">🧾 Bill</button></td>
   </tr>`).join('');
 }
 
@@ -2076,6 +2077,19 @@ const _origToggleSvc = typeof toggleSvc !== 'undefined' ? toggleSvc : null;
 // INVOICE DISPLAY SYSTEM
 // ============================================================
 const INV_LOGO = LOGO_URI; // reuse same logoconst INV_HEADER_STYLE = 'background:linear-gradient(135deg,#1a001a 0%,#2d0a2d 50%,#1a001a 100%);color:#fff;padding:20px 26px 14px;';
+
+
+// ============================================================
+// INVOICE BY ID — Safe onclick (no JSON.stringify issues)
+// ============================================================
+function showInvoiceById(id, module) {
+  let record = null;
+  if (module === 'Academy') record = academy.find(r => (r.id||r.ID) === id);
+  if (module === 'Salon') record = salon.find(r => (r.id||r.ID) === id);
+  if (module === 'Bridal') record = bridal.find(r => (r.id||r.ID) === id);
+  if (!record) { toast('Record not found', 'w'); return; }
+  showInvoice(record, module);
+}
 
 function showInvoice(r, module) {
   document.getElementById('inv-modal-title').textContent = module + ' Invoice';
