@@ -1252,7 +1252,7 @@ async function apiCall(body){
     if(body.action==='update'){ updateDemo(body.sheet, body.id, body.row); return {success:true}; }
     return {success:true};
   }
-  const encoded = encodeURIComponent(JSON.stringify(body));
+  const encoded = encodeURIComponent(unescape(encodeURIComponent(JSON.stringify(body))));
   const url = API_URL + '?payload=' + encoded;
   const res = await fetch(url, {redirect:'follow'});
   const data = JSON.parse(await res.text());
