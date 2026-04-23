@@ -1122,7 +1122,7 @@ function renderDelHistory() {
 // ============================================================
 // CONFIG — paste your Apps Script URL after deployment
 // ============================================================
-let API_URL = localStorage.getItem('uk_api_url') || 'https://script.google.com/macros/s/AKfycbyxxB14gSpLx5iwSwLG82RsZgQiEBkiEPsyzBOBrbuIWxLPMm-9ahixIyK5Vc4GGHQOhA/exec';
+let API_URL = localStorage.getItem('uk_api_url') || 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec';
 let IS_DEMO = false; // Pre-configured API URL
 
 // ============================================================
@@ -1147,22 +1147,22 @@ let invCount = parseInt(localStorage.getItem('uk_inv_c')||'1001');
 // INIT
 // ============================================================
 window.onload = async ()=>{
-  // Auto-configure Google Sheets API
-  API_URL = 'https://script.google.com/macros/s/AKfycbyxxB14gSpLx5iwSwLG82RsZgQiEBkiEPsyzBOBrbuIWxLPMm-9ahixIyK5Vc4GGHQOhA/exec';
+  // Pre-configured — no setup needed
+  API_URL = 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec';
   IS_DEMO = false;
   localStorage.setItem('uk_api_url', API_URL);
+  // ALWAYS skip setup screen
+  document.getElementById('setup-screen').classList.add('hidden');
   document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
   setTodayDates();
   buildSvcGrid();
   populateSPMonths();
   setFBDates();
-  // Show login screen first
+  // Go straight to login
   document.getElementById('main-app').style.display = 'none';
   document.getElementById('login-screen').classList.remove('hidden');
-  // Set login logo
   const logoEl = document.getElementById('login-logo-img');
   if (logoEl) logoEl.src = LOGO_URI;
-  // Init touch support for PIN pad
   setTimeout(initPinPadTouch, 500);
 };
 
@@ -1230,34 +1230,17 @@ function stopSync(ok){ g('sync-bar').classList.remove('loading'); setConnStatus(
 
 async function apiGet(sheet){
   if(IS_DEMO) return loadDemo(sheet);
-  const res = await fetch(`${API_URL}?action=getAll&sheet=${encodeURIComponent(sheet)}`,{
-    method:'GET',
-    redirect:'follow'
-  });
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const text = await res.text();
-  const data = JSON.parse(text);
-  if(!data.success) throw new Error(data.error||'Fetch failed');
-  return data.data;
-}
-
-async function apiCall(body){
-  if(IS_DEMO){
-    if(body.action==='insert') return {id: saveDemo(body.sheet, body.row)};
-    if(body.action==='delete'){ deleteDemo(body.sheet, body.id); return {success:true}; }
-    if(body.action==='update'){ updateDemo(body.sheet, body.id, body.row); return {success:true}; }
-    if(body.action==='login'){ return {success: validatePinLocal(body.role, body.pin)}; }
-    return {success:true};
+  try {
+    const res = await fetch(API_URL + '?action=getAll&sheet=' + encodeURIComponent(sheet), {redirect:'follow'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const data = JSON.parse(text);
+    if(!data.success) throw new Error(data.error||'Failed');
+    return data.data || [];
+  } catch(err) {
+    console.warn('Sync failed:', err.message);
+    return loadDemo(sheet);
   }
-  const payload = JSON.stringify(body);
-  const formData = new FormData();
-  formData.append('payload', payload);
-  const res = await fetch(API_URL, {method:'POST', body: formData, redirect:'follow'});
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const text = await res.text();
-  const data = JSON.parse(text);
-  if(!data.success) throw new Error(data.error||'Failed');
-  return data;
 }
 
 async function apiPost(sheet,row){
