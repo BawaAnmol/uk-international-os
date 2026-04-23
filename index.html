@@ -1258,7 +1258,8 @@ async function apiCall(body){
   try {
     const url = 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec';
     const fd = new FormData();
-    fd.append('payload', JSON.stringify(body));
+    const safePayload = JSON.stringify(body).replace(/[\u0080-\uffff]/g, ch => '\\u' + ('0000' + ch.charCodeAt(0).toString(16)).slice(-4));
+    fd.append('payload', safePayload);
     const res = await fetch(url, {method:'POST', body:fd, redirect:'follow'});
     const text = await res.text();
     const data = JSON.parse(text);
