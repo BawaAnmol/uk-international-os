@@ -1244,6 +1244,21 @@ async function apiGet(sheet){
 }
 
 
+
+async function apiCall(body){
+  if(typeof IS_DEMO !== 'undefined' && IS_DEMO){
+    if(body.action==='insert') return {id: saveDemo(body.sheet, body.row)};
+    if(body.action==='delete'){ deleteDemo(body.sheet, body.id); return {success:true}; }
+    if(body.action==='update'){ updateDemo(body.sheet, body.id, body.row); return {success:true}; }
+    return {success:true};
+  }
+  const encoded = encodeURIComponent(JSON.stringify(body));
+  const url = API_URL + '?payload=' + encoded;
+  const res = await fetch(url, {redirect:'follow'});
+  const data = JSON.parse(await res.text());
+  if(!data.success) throw new Error(data.error||'Failed');
+  return data;
+}
 async function apiPost(sheet,row){
   const result = await apiCall({action:'insert',sheet,row});
   return result.id;
