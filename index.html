@@ -1256,14 +1256,10 @@ async function apiCall(body){
     return {success:true};
   }
   try {
-    const payload = JSON.stringify(body);
-    const encoded = payload.split('').map(c => {
-      const code = c.charCodeAt(0);
-      return code > 127 ? encodeURIComponent(c) : c;
-    }).join('');
-    const safeEncoded = encodeURIComponent(encoded);
-    const url = 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec?payload=' + safeEncoded;
-    const res = await fetch(url, {redirect:'follow'});
+    const url = 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec';
+    const fd = new FormData();
+    fd.append('payload', JSON.stringify(body));
+    const res = await fetch(url, {method:'POST', body:fd, redirect:'follow'});
     const text = await res.text();
     const data = JSON.parse(text);
     if(!data.success) throw new Error(data.error||'Failed');
