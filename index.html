@@ -199,14 +199,14 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
 /* ---- LOGIN SCREEN ---- */
 .login-screen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d000d 0%,#1a001a 40%,#2d0020 100%);}
 .login-screen.hidden{display:none;}
-.login-card{width:380px;max-width:95vw;text-align:center;}
-.login-logo{width:90px;height:90px;object-fit:contain;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 20px rgba(255,20,147,0.6));animation:logoGlow 2s ease-in-out infinite alternate;}
+.login-card{width:380px;max-width:95vw;text-align:center;position:relative;z-index:100001;}
+.login-logo{width:90px;height:90px;object-fit:contain;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 20px rgba(255,20,147,0.6));animation:logoGlow 2s ease-in-out infinite alternate;pointer-events:none;}
 @keyframes logoGlow{from{filter:drop-shadow(0 0 10px rgba(255,20,147,0.4));}to{filter:drop-shadow(0 0 28px rgba(255,105,180,0.9));}}
 .login-school{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:3px;}
 .login-sub{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;font-family:'JetBrains Mono',monospace;margin-bottom:28px;}
-.login-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,105,180,0.2);border-radius:16px;padding:28px 24px;backdrop-filter:blur(12px);}
+.login-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,105,180,0.2);border-radius:16px;padding:28px 24px;backdrop-filter:blur(12px);position:relative;z-index:100001;}
 .role-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
-.role-btn{padding:10px 6px;border:1.5px solid rgba(255,255,255,0.1);border-radius:9px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;}
+.role-btn{padding:10px 6px;border:1.5px solid rgba(255,255,255,0.1);border-radius:9px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;pointer-events:all;position:relative;z-index:100001;-webkit-tap-highlight-color:rgba(255,105,180,0.3);}
 .role-btn .role-ic{font-size:20px;display:block;margin-bottom:4px;}
 .role-btn:hover{border-color:rgba(255,105,180,0.4);color:rgba(255,255,255,0.8);}
 .role-btn.selected{border-color:#ff69b4;background:rgba(255,105,180,0.12);color:#fff;}
@@ -214,8 +214,8 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
 .pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:20px;}
 .pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,105,180,0.4);background:transparent;transition:all .2s;}
 .pin-dot.filled{background:#ff69b4;border-color:#ff69b4;box-shadow:0 0 8px rgba(255,105,180,0.6);}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.pin-key{height:52px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#fff;font-size:18px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative;z-index:100001;}
+.pin-key{height:52px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#fff;font-size:18px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;pointer-events:all;position:relative;z-index:100000;-webkit-tap-highlight-color:rgba(255,105,180,0.3);}
 .pin-key:hover{background:rgba(255,105,180,0.15);border-color:rgba(255,105,180,0.4);}
 .pin-key:active{transform:scale(0.95);background:rgba(255,105,180,0.25);}
 .pin-key.del{font-size:20px;color:rgba(255,255,255,0.4);}
@@ -249,8 +249,7 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
 <!-- ===== LOGIN SCREEN ===== -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
-    <img class="login-logo" src="data:image/png;base64,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" alt="UK International">
-    <div class="login-school">The UK International</div>
+    <img class="login-logo" id="login-logo-img" src="" alt="UK International">    <div class="login-school">The UK International</div>
     <div class="login-school" style="font-size:14px;color:#ff69b4;">London Beauty School</div>
     <div class="login-sub">Business OS — Secure Login</div>
     <div class="login-box">
@@ -346,6 +345,7 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
       <button class="nav-item" onclick="gotoPanel('sophronix',this)"><span class="ic">💰</span>Revenue Share</button>
       <button class="nav-item" onclick="gotoPanel('fbexport',this)"><span class="ic">📡</span>FB Offline Events</button>
       <button class="nav-item" onclick="gotoPanel('delhistory',this)" id="nav-delhistory"><span class="ic">🗑️</span>Delete History</button>
+      <button class="nav-item" onclick="gotoPanel('reminders',this)"><span class="ic">💬</span>WA Reminders</button>
     </nav>
     <div class="sidebar-foot">
       <div class="soph-tag">by <strong>SOPHRONIX</strong></div>
@@ -418,11 +418,19 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
               <div class="fg"><label>Date *</label><input id="a-date" type="date"></div>
               <div class="fsec">📚 Course</div>
               <div class="fg"><label>Course *</label>
-                <select id="a-course"><option value="">Select Course</option>
-                  <option>Bridal Makeup (Full)</option><option>Party Makeup</option><option>Professional Hair Styling</option>
-                  <option>Nail Art & Extension</option><option>Skin Care & Facial</option><option>Full Salon Course</option>
-                  <option>Mehendi Art</option><option>Beauty Parlour Diploma</option>
+                <select id="a-course" onchange="checkCustomCourse(this.value)">
+                  <option value="">Select Course</option>
+                  <option>Bridal Makeup (Full)</option>
+                  <option>Party Makeup</option>
+                  <option>Professional Hair Styling</option>
+                  <option>Nail Art & Extension</option>
+                  <option>Skin Care & Facial</option>
+                  <option>Full Salon Course</option>
+                  <option>Mehendi Art</option>
+                  <option>Beauty Parlour Diploma</option>
+                  <option value="custom">✏️ Custom Course (type below)</option>
                 </select>
+                <input id="a-course-custom" placeholder="Course ka naam likho..." style="display:none;margin-top:6px;padding:10px 12px;border:1.5px solid var(--border);border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:14px;width:100%;outline:none;">
               </div>
               <div class="fg"><label>Duration</label><select id="a-dur"><option>1 Month</option><option>2 Months</option><option>3 Months</option><option>6 Months</option><option>1 Year</option></select></div>
               <div class="fsec">💰 Fees</div>
@@ -476,17 +484,25 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
           <div class="form-card">
             <div class="grid2">
               <div class="fsec">👤 Client Info</div>
+              <div style="grid-column:1/-1;margin-bottom:8px;display:flex;gap:8px">
+                <button class="btn btn-ghost btn-sm" id="salon-mode-standard" onclick="setSalonMode('standard')" style="border-color:var(--gold);color:var(--gold)">📋 Standard Bill</button>
+                <button class="btn btn-ghost btn-sm" id="salon-mode-custom" onclick="setSalonMode('custom')">✏️ Full Custom Bill</button>
+              </div>
               <div class="fg"><label>Client Name *</label><input id="s-name" placeholder="Client name"></div>
               <div class="fg"><label>Phone *</label><input id="s-phone" type="tel" maxlength="10"></div>
               <div class="fg"><label>Date *</label><input id="s-date" type="date"></div>
               <div class="fg"><label>Staff</label><select id="s-staff"><option value="">Select Staff</option></select></div>
-              <div class="fsec">💅 Services</div>
+              <div class="fsec">💅 Services & Custom Items</div>
               <div class="gcol2">
                 <div class="svc-grid" id="svc-grid"></div>
-                <div style="display:flex;gap:8px;margin-bottom:10px">
-                  <div class="fg" style="flex:1;margin:0"><label>Custom Service</label><input id="s-custom" placeholder="Service name"></div>
-                  <div class="fg" style="width:100px;margin:0"><label>Price (₹)</label><input id="s-custom-price" type="number"></div>
-                  <button class="btn btn-ghost btn-sm" style="margin-top:18px;height:38px" onclick="addCustomSvc()">+ Add</button>
+                <div style="background:var(--gold-p);border:1px solid rgba(184,134,11,0.2);border-radius:9px;padding:14px;margin-bottom:10px">
+                  <div style="font-size:11px;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:10px">✏️ CUSTOM ITEM ADD KARO</div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <div class="fg" style="flex:2;min-width:140px;margin:0"><label>Service / Item Name</label><input id="s-custom" placeholder="e.g. Smoothening, Keratin..."></div>
+                    <div class="fg" style="width:110px;margin:0"><label>Price (₹)</label><input id="s-custom-price" type="number" placeholder="1500"></div>
+                    <div class="fg" style="width:70px;margin:0"><label>Qty</label><input id="s-custom-qty" type="number" placeholder="1" value="1" min="1"></div>
+                    <button class="btn btn-gold btn-sm" style="margin-top:18px;height:38px" onclick="addCustomSvc()">+ Add</button>
+                  </div>
                 </div>
                 <div id="s-selected" style="background:var(--bg);border-radius:8px;padding:12px;min-height:46px;border:1px solid var(--border);font-size:12px;color:var(--ink3)">No services selected</div>
               </div>
@@ -612,7 +628,19 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
             <div class="fsec">👤 Staff Details</div>
             <div class="fg"><label>Name *</label><input id="st-name" placeholder="Full name"></div>
             <div class="fg"><label>Phone *</label><input id="st-phone" type="tel" maxlength="10"></div>
-            <div class="fg"><label>Role *</label><select id="st-role"><option>Makeup Artist</option><option>Hair Stylist</option><option>Nail Technician</option><option>Skin Care Expert</option><option>Receptionist</option><option>Trainer</option></select></div>
+            <div class="fg"><label>Role *</label><select id="st-role" onchange="checkCustomRole(this.value)">
+                <option value="Makeup Artist">Makeup Artist</option>
+                <option value="Hair Stylist">Hair Stylist</option>
+                <option value="Nail Technician">Nail Technician</option>
+                <option value="Skin Care Expert">Skin Care Expert</option>
+                <option value="Facial Expert">Facial Expert</option>
+                <option value="Mehendi Artist">Mehendi Artist</option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="Trainer">Trainer</option>
+                <option value="Manager">Manager</option>
+                <option value="custom">✏️ Custom Role (type below)</option>
+              </select>
+              <input id="st-role-custom" placeholder="Type custom role name..." style="display:none;margin-top:6px;padding:10px 12px;border:1.5px solid var(--border);border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:14px;width:100%;outline:none;"></div>
             <div class="fg"><label>Salary (₹/month)</label><input id="st-salary" type="number"></div>
             <div class="fg"><label>Joining Date</label><input id="st-jdate" type="date"></div>
             <div class="fg"><label>Status</label><select id="st-status"><option>Active</option><option>On Leave</option><option>Resigned</option></select></div>
@@ -683,6 +711,77 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
       <div id="del-history-list" style="margin-top:4px"></div>
     </div>
 
+
+    <!-- WHATSAPP REMINDERS -->
+    <div class="panel" id="panel-reminders">
+      <div style="margin-bottom:20px">
+        <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800">WhatsApp Reminders</h2>
+        <p style="color:var(--ink3);font-size:13px;margin-top:3px">Clients ko service ke baad reminders bhejo — ek click mein WhatsApp khulega</p>
+      </div>
+
+      <!-- REMINDER RULES -->
+      <div style="background:#fff;border-radius:12px;border:1px solid var(--border);padding:22px;margin-bottom:20px">
+        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px">Reminder Rules Setup</h3>
+        <div class="grid2">
+          <div class="fg">
+            <label>Service / Course</label>
+            <select id="rm-service">
+              <option value="Hair Cut">✂️ Hair Cut</option>
+              <option value="Facial">🧖 Facial</option>
+              <option value="Waxing">💆 Waxing</option>
+              <option value="Hair Color">🎨 Hair Color</option>
+              <option value="Mehendi">🌿 Mehendi</option>
+              <option value="Manicure">💅 Manicure/Pedicure</option>
+              <option value="Cleanup">✨ Cleanup</option>
+              <option value="Academy">🎓 Academy Course</option>
+              <option value="Bridal">👰 Bridal Package</option>
+              <option value="custom">✏️ Custom Service</option>
+            </select>
+          </div>
+          <div class="fg" id="rm-custom-g" style="display:none">
+            <label>Custom Service Name</label>
+            <input id="rm-custom" placeholder="e.g. Smoothening, Keratin...">
+          </div>
+          <div class="fg">
+            <label>Remind After (Days)</label>
+            <select id="rm-days">
+              <option value="7">7 days (1 week)</option>
+              <option value="14" selected>14 days (2 weeks)</option>
+              <option value="21">21 days (3 weeks)</option>
+              <option value="30">30 days (1 month)</option>
+              <option value="45">45 days</option>
+              <option value="60">60 days (2 months)</option>
+              <option value="90">90 days (3 months)</option>
+            </select>
+          </div>
+          <div class="fg gcol2">
+            <label>Custom WhatsApp Message</label>
+            <textarea id="rm-message" style="min-height:90px" placeholder="Namaste {name} ji! Aapko {service} karvate huye {days} ho gaye hain. Ab book karein! 📅"></textarea>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px">
+          <button class="btn btn-primary" onclick="addReminderRule()" style="flex:1;justify-content:center">+ Add Reminder Rule</button>
+          <button class="btn btn-ghost" onclick="generateAllReminders()">🔄 Check All Due Now</button>
+        </div>
+      </div>
+
+      <!-- ACTIVE RULES -->
+      <div class="tw" style="margin-bottom:20px">
+        <div class="tw-head"><h3>Active Reminder Rules</h3></div>
+        <table><thead><tr><th>Service</th><th>Remind After</th><th>Message Preview</th><th></th></tr></thead>
+        <tbody id="rm-rules-tbody"></tbody></table>
+      </div>
+
+      <!-- DUE REMINDERS -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h3 style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700">Due Reminders Today</h3>
+        <span style="font-size:12px;color:var(--ink3)">Click 💬 to open WhatsApp directly</span>
+      </div>
+      <div id="rm-due-list">
+        <div class="empty"><div class="ei">💬</div><h3>Add rules above to see due reminders</h3></div>
+      </div>
+    </div>
+
 </main>
 </div>
 
@@ -727,6 +826,18 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
     <div class="modal-h"><h2>📄 Sophronix Invoice</h2><button class="modal-x" onclick="closeOverlay('soph-inv-overlay')">×</button></div>
     <div class="modal-b"><div id="soph-inv-content"></div></div>
     <div class="modal-f"><button class="btn btn-ghost" onclick="closeOverlay('soph-inv-overlay')">Close</button><button class="btn btn-gold" onclick="printDiv('soph-inv-content')">🖨 Print</button></div>
+  </div>
+</div>
+
+<!-- INVOICE MODAL -->
+<div class="overlay" id="inv-overlay">
+  <div class="modal">
+    <div class="modal-h"><h2 id="inv-modal-title">Invoice</h2><button class="modal-x" onclick="closeOverlay('inv-overlay')">×</button></div>
+    <div class="modal-b"><div id="inv-content"></div></div>
+    <div class="modal-f">
+      <button class="btn btn-ghost" onclick="closeOverlay('inv-overlay')">Close</button>
+      <button class="btn btn-primary" onclick="printDiv('inv-content')">🖨 Print / PDF</button>
+    </div>
   </div>
 </div>
 
@@ -798,6 +909,26 @@ function pinKey(n) {
   if (pinBuffer.length === 4) setTimeout(tryLogin, 200);
 }
 
+// Mobile touch fix - add touchend listeners after DOM loads
+function initPinPadTouch() {
+  document.querySelectorAll('.pin-key').forEach(btn => {
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const onclick = btn.getAttribute('onclick');
+      if (onclick) eval(onclick);
+    }, {passive: false});
+  });
+  document.querySelectorAll('.role-btn').forEach(btn => {
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const onclick = btn.getAttribute('onclick');
+      if (onclick) eval(onclick);
+    }, {passive: false});
+  });
+}
+
 function pinBack() {
   pinBuffer = pinBuffer.slice(0, -1);
   updatePinDots();
@@ -856,6 +987,10 @@ function loginSuccess() {
 function logout() {
   if (!confirm('Logout karna chahte ho?')) return;
   currentRole = null; currentUser = null; pinBuffer = '';
+  selectedLoginRole = 'owner';
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('selected'));
+  const ownerBtn = document.querySelector('.role-btn');
+  if(ownerBtn) ownerBtn.classList.add('selected');
   updatePinDots();
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('main-app').style.display = 'none';
@@ -913,46 +1048,46 @@ function canDelete() {
 // ============================================================
 let deletedRecords = JSON.parse(localStorage.getItem('uk_deleted') || '[]');
 
-function softDelete(module, record) {
+async function softDelete(module, record) {
   if (!canDelete()) { toast('❌ Aapko delete ka access nahi hai', 'w'); return; }
-  if (!confirm(`"${record.name}" ko delete karna chahte ho? Yeh Delete History mein save hoga.`)) return;
+  if (!confirm('"' + (record.name||'Record') + '" ko delete karna chahte ho? Delete History mein save hoga.')) return;
 
-  const delRecord = {
-    ...record,
-    deletedAt: new Date().toISOString(),
-    deletedBy: currentUser,
-    deletedFrom: module,
-    originalId: record.id,
-    id: 'DEL-' + Date.now(),
-  };
+  const moduleSheet = {academy:'Academy',salon:'Salon',bridal:'Bridal',appointments:'Appointments'};
+  const sheetName = moduleSheet[module] || module;
 
-  deletedRecords.unshift(delRecord);
-  localStorage.setItem('uk_deleted', JSON.stringify(deletedRecords));
-
-  // Remove from active array
-  if (module === 'academy') { academy = academy.filter(r => r.id !== record.id); }
-  if (module === 'salon') { salon = salon.filter(r => r.id !== record.id); }
-  if (module === 'bridal') { bridal = bridal.filter(r => r.id !== record.id); }
-  if (module === 'appointments') { appts = appts.filter(r => r.id !== record.id); }
-
-  // Save to Google Sheets Delete History via Apps Script
-  if (!IS_DEMO && API_URL) {
-    apiPost('deleted', {
-      'Original ID': record.id,
-      'Module': module,
+  try {
+    // Save to Deleted History
+    await apiPost('Deleted History', {
+      'Original ID': record.id || '',
+      'Module': sheetName,
       'Name': record.name || record['Bride Name'] || '',
       'Phone': record.phone || '',
       'Amount': record.paid || record.advance || 0,
       'Source': record.source || '',
       'Deleted By': currentUser,
-      'Deleted At': new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}),
-      'Full Data': JSON.stringify(record).slice(0,500),
-    }).catch(() => {}); // silent fail ok
-  }
+      'Deleted At': new Date().toISOString(),
+      'Full Data': JSON.stringify(record).slice(0, 500),
+    });
 
-  renderAll();
-  renderDelHistory();
-  toast(`🗑️ Deleted & saved to history`);
+    // Delete from original sheet
+    if (record.id) await apiDelete(sheetName, record.id);
+
+    // Remove from local arrays
+    if (module === 'academy') academy = academy.filter(r => r.id !== record.id);
+    if (module === 'salon') salon = salon.filter(r => r.id !== record.id);
+    if (module === 'bridal') bridal = bridal.filter(r => r.id !== record.id);
+    if (module === 'appointments') appts = appts.filter(r => r.id !== record.id);
+
+    // Local delete history
+    deletedRecords.unshift({...record, deletedAt:new Date().toISOString(), deletedBy:currentUser, deletedFrom:module, originalId:record.id});
+    localStorage.setItem('uk_deleted', JSON.stringify(deletedRecords));
+
+    renderAll();
+    renderDelHistory();
+    toast('🗑️ Deleted & saved to history');
+  } catch(err) {
+    toast('❌ Delete failed: ' + err.message, 'w');
+  }
 }
 
 function renderDelHistory() {
@@ -987,8 +1122,8 @@ function renderDelHistory() {
 // ============================================================
 // CONFIG — paste your Apps Script URL after deployment
 // ============================================================
-let API_URL = localStorage.getItem('uk_api_url') || '';
-let IS_DEMO = !API_URL;
+let API_URL = localStorage.getItem('uk_api_url') || 'https://script.google.com/macros/s/AKfycbyxxB14gSpLx5iwSwLG82RsZgQiEBkiEPsyzBOBrbuIWxLPMm-9ahixIyK5Vc4GGHQOhA/exec';
+let IS_DEMO = false; // Pre-configured API URL
 
 // ============================================================
 // STATE — local cache (synced from Google Sheets)
@@ -1012,15 +1147,23 @@ let invCount = parseInt(localStorage.getItem('uk_inv_c')||'1001');
 // INIT
 // ============================================================
 window.onload = async ()=>{
+  // Auto-configure Google Sheets API
+  API_URL = 'https://script.google.com/macros/s/AKfycbyxxB14gSpLx5iwSwLG82RsZgQiEBkiEPsyzBOBrbuIWxLPMm-9ahixIyK5Vc4GGHQOhA/exec';
+  IS_DEMO = false;
+  localStorage.setItem('uk_api_url', API_URL);
   document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
   setTodayDates();
   buildSvcGrid();
   populateSPMonths();
   setFBDates();
-  // Show login screen first — always
-  // App will show after successful PIN entry
+  // Show login screen first
   document.getElementById('main-app').style.display = 'none';
   document.getElementById('login-screen').classList.remove('hidden');
+  // Set login logo
+  const logoEl = document.getElementById('login-logo-img');
+  if (logoEl) logoEl.src = LOGO_URI;
+  // Init touch support for PIN pad
+  setTimeout(initPinPadTouch, 500);
 };
 
 function showSetup(){ document.getElementById('setup-screen').classList.remove('hidden'); document.getElementById('main-app').style.display='none'; }
@@ -1061,6 +1204,8 @@ async function saveAndConnect(){
 
 function demoMode(){
   IS_DEMO=true;
+  localStorage.setItem('uk_demo_mode','1');
+  localStorage.removeItem('uk_api_url');
   document.getElementById('setup-screen').classList.add('hidden');
   document.getElementById('main-app').style.display='grid';
   setConnStatus('demo');
@@ -1085,36 +1230,85 @@ function stopSync(ok){ g('sync-bar').classList.remove('loading'); setConnStatus(
 
 async function apiGet(sheet){
   if(IS_DEMO) return loadDemo(sheet);
-  const res = await fetch(`${API_URL}?action=getAll&sheet=${sheet}`);
-  const data = await res.json();
-  if(!data.success) throw new Error(data.error);
+  const res = await fetch(`${API_URL}?action=getAll&sheet=${encodeURIComponent(sheet)}`,{
+    method:'GET',
+    redirect:'follow'
+  });
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const text = await res.text();
+  const data = JSON.parse(text);
+  if(!data.success) throw new Error(data.error||'Fetch failed');
   return data.data;
 }
 
+async function apiCall(body){
+  if(IS_DEMO){
+    if(body.action==='insert') return {id: saveDemo(body.sheet, body.row)};
+    if(body.action==='delete'){ deleteDemo(body.sheet, body.id); return {success:true}; }
+    if(body.action==='update'){ updateDemo(body.sheet, body.id, body.row); return {success:true}; }
+    if(body.action==='login'){ return {success: validatePinLocal(body.role, body.pin)}; }
+    return {success:true};
+  }
+  const payload = JSON.stringify(body);
+  const formData = new FormData();
+  formData.append('payload', payload);
+  const res = await fetch(API_URL, {method:'POST', body: formData, redirect:'follow'});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const text = await res.text();
+  const data = JSON.parse(text);
+  if(!data.success) throw new Error(data.error||'Failed');
+  return data;
+}
+
 async function apiPost(sheet,row){
-  if(IS_DEMO){ return saveDemo(sheet,row); }
-  const res = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'insert',sheet,row})});
-  const data = await res.json();
-  if(!data.success) throw new Error(data.error||'Save failed');
-  return data.id;
+  const result = await apiCall({action:'insert',sheet,row});
+  return result.id;
+}
+
+async function apiUpdate(sheet,id,row){
+  return await apiCall({action:'update',sheet,id,row});
+}
+
+async function apiDelete(sheet,id){
+  return await apiCall({action:'delete',sheet,id});
+}
+
+async function apiLoginCheck(role,pin){
+  const result = await apiCall({action:'login',role,pin});
+  return result.success;
 }
 
 // Demo mode fallback (localStorage)
 function loadDemo(sheet){ return JSON.parse(localStorage.getItem('uk_demo_'+sheet)||'[]'); }
 function saveDemo(sheet,row){
   const arr = loadDemo(sheet);
-  const prefix={academy:'ACD',salon:'SLN',bridal:'BRD',appointments:'APT',staff:'STF'};
-  const id=(prefix[sheet]||'REC')+'-'+String(invCount).padStart(4,'0');
-  invCount++;localStorage.setItem('uk_inv_c',invCount);
-  row['ID']=id;row['Timestamp']=new Date().toLocaleString('en-IN');
+  const prefix={'Academy':'ACD','Salon':'SLN','Bridal':'BRD','Appointments':'APT','Staff':'STF','Deleted History':'DEL'};
+  const maxNum = arr.reduce((m,r)=>{ const n=parseInt((r.id||r.ID||'').replace(/\D/g,''))||0; return n>m?n:m; },1000);
+  const id=(prefix[sheet]||'REC')+'-'+String(maxNum+1).padStart(4,'0');
+  invCount++;localStorage.setItem('uk_inv_c',String(invCount));
+  row['ID']=id;row.id=id;row['Timestamp']=new Date().toISOString();
   arr.unshift(row);localStorage.setItem('uk_demo_'+sheet,JSON.stringify(arr));
   return id;
+}
+function deleteDemo(sheet,id){
+  const arr=loadDemo(sheet).filter(r=>(r.id||r.ID)!==id);
+  localStorage.setItem('uk_demo_'+sheet,JSON.stringify(arr));
+}
+function updateDemo(sheet,id,newData){
+  const arr=loadDemo(sheet).map(r=>{
+    if((r.id||r.ID)===id) return {...r,...newData};
+    return r;
+  });
+  localStorage.setItem('uk_demo_'+sheet,JSON.stringify(arr));
+}
+function validatePinLocal(role,pin){
+  return pin===PINS[role];
 }
 
 async function syncAll(){
   startSync();
   try{
-    const [a,s,b,ap,st] = await Promise.all([apiGet('academy'),apiGet('salon'),apiGet('bridal'),apiGet('appointments'),apiGet('staff')]);
+    const [a,s,b,ap,st] = await Promise.all([apiGet('Academy'),apiGet('Salon'),apiGet('Bridal'),apiGet('Appointments'),apiGet('Staff')]);
     academy=normalizeArr(a,'academy'); salon=normalizeArr(s,'salon'); bridal=normalizeArr(b,'bridal');
     appts=normalizeArr(ap,'appointments'); staff=normalizeArr(st,'staff');
     renderAll(); stopSync(true);
@@ -1171,7 +1365,7 @@ function normalizeArr(arr,type){
 // ============================================================
 async function submitAcademy(){
   const name=gv('a-name').trim(),phone=gv('a-phone').trim(),course=gv('a-course'),fee=parseFloat(gv('a-fee')),paid=parseFloat(gv('a-paid')),source=gv('a-src'),date=gv('a-date');
-  if(!name||!phone||!course||!fee||isNaN(paid)||!source||!date){toast('⚠️ Fill all mandatory fields','w');return;}
+  if(!name||!phone||!course||!fee||isNaN(paid)||!source||!date){toast('⚠️ Saare zaroori fields bharo — Course bhi select/type karo','w');return;}
   if(phone.length!==10){toast('⚠️ Phone must be 10 digits','w');return;}
   setBtnLoading('a-submit-btn',true);
   const isSocial=SOCIAL.includes(source);
@@ -1184,7 +1378,7 @@ async function submitAcademy(){
     'Status':balance===0?'Paid':paid>0?'Partial':'Pending','Created At':new Date().toISOString()
   };
   try{
-    const id=await apiPost('academy',row);
+    const id=await apiPost('Academy',row);
     row['ID']=id; row['isSocial']=isSocial; row['sophFee']=isSocial?Math.round(paid*0.1):0;
     row.id=id; row.name=name; row.phone=phone; row.course=course; row.duration=gv('a-dur');
     row.fee=fee; row.paid=paid; row.balance=balance; row.source=source; row.date=date;
@@ -1205,7 +1399,7 @@ async function submitSalon(){
   const total=selectedSvcs.reduce((s,x)=>s+x.price,0);
   const disc=parseFloat(gv('s-disc'))||0;
   const final=Math.max(0,total-disc);
-  const paid=parseFloat(gv('s-paid'))||final;
+  const rawPaidVal=gv('s-paid'); const paid=rawPaidVal===''?final:(parseFloat(rawPaidVal)||0);
   const balance=Math.max(0,final-paid);
   const isSocial=SOCIAL.includes(source);
   const svcsStr=selectedSvcs.map(s=>s.name).join(', ');
@@ -1217,7 +1411,7 @@ async function submitSalon(){
     'Status':balance===0?'Paid':paid>0?'Partial':'Pending','Created At':new Date().toISOString()
   };
   try{
-    const id=await apiPost('salon',row);
+    const id=await apiPost('Salon',row);
     row.id=id;row.name=name;row.phone=phone;row.servicesStr=svcsStr;row.source=source;
     row.total=total;row.discount=disc;row.final=final;row.paid=paid;row.balance=balance;
     row.isSocial=isSocial;row.sophFee=isSocial?Math.round(paid*0.1):0;row.date=date;
@@ -1238,7 +1432,7 @@ async function submitBridal(){
   setBtnLoading('br-submit-btn',true);
   const balance=Math.max(0,total-advance);
   const isSocial=SOCIAL.includes(source);
-  const pkgEl=g('br-pkg');const pkg=pkgEl.options[pkgEl.selectedIndex].text;
+  const pkgEl=g('br-pkg');const pkg=(pkgEl&&pkgEl.selectedIndex>=0)?pkgEl.options[pkgEl.selectedIndex].text:'';
   const row={
     'Bride Name':name,'Phone':phone,'Booking Date':bdate,'Wedding Date':wdate,
     'Venue':gv('br-venue'),'Package':pkg,'Total':total,'Advance':advance,'Balance':balance,
@@ -1247,7 +1441,7 @@ async function submitBridal(){
     'Created At':new Date().toISOString()
   };
   try{
-    const id=await apiPost('bridal',row);
+    const id=await apiPost('Bridal',row);
     row.id=id;row.name=name;row.phone=phone;row.bdate=bdate;row.wdate=wdate;row.pkg=pkg;
     row.total=total;row.advance=advance;row.balance=balance;row.paid=advance;
     row.source=source;row.status=gv('br-status');row.isSocial=isSocial;
@@ -1270,7 +1464,7 @@ async function submitAppt(){
     'Status':'Upcoming','Created At':new Date().toISOString()
   };
   try{
-    const id=await apiPost('appointments',row);
+    const id=await apiPost('Appointments',row);
     row.id=id;row.name=name;row.phone=phone;row.date=date;row.time=time;
     row.type=gv('ap-type');row.service=gv('ap-service');row.status='Upcoming';
     appts.unshift(row); renderAppts(); renderCalendar(); renderDashboard();
@@ -1289,11 +1483,13 @@ async function submitStaff(){
     'Joining Date':gv('st-jdate'),'Status':gv('st-status'),'Created At':new Date().toISOString()
   };
   try{
-    const id=await apiPost('staff',row);
+    const id=await apiPost('Staff',row);
     row.id=id;row.name=name;row.phone=phone;row.role=gv('st-role');row.salary=parseFloat(gv('st-salary'))||0;row.status=gv('st-status');
-    staff.push(row); renderStaff(); updateStaffDropdowns();
+    staff.unshift(row); renderStaff(); updateStaffDropdowns();
     toast('✅ Staff saved!');
-    ['st-name','st-phone','st-salary'].forEach(id=>g(id)?g(id).value='':'');
+    ['st-name','st-phone','st-salary','st-role-custom'].forEach(id=>g(id)?g(id).value='':'');
+  if(g('st-role'))g('st-role').value='Makeup Artist';
+  if(g('st-role-custom'))g('st-role-custom').style.display='none';
   }catch(err){toast('❌ Save failed: '+err.message,'w');}
   setBtnLoading('st-submit-btn',false);
 }
@@ -1355,6 +1551,7 @@ function renderAcademyTable(f='',sf=''){
     <td>${statusBadge(r.status)}</td><td class="mono" style="font-size:11px">${fmtDate(r.date)}</td>
     <td>
       <a href="https://wa.me/91${r.phone}?text=${encodeURIComponent('UK International se aapka invoice ready hai. Course: '+r.course+' | Paid: '+fmt(r.paid)+' | Balance: '+fmt(r.balance))}" target="_blank"><button class="btn btn-ghost btn-sm">💬</button></a>
+      <button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},"Academy")'>🧾</button>
     </td>
   </tr>`).join('');
 }
@@ -1369,6 +1566,7 @@ function renderSalonTable(f=''){
     <td>${srcBadge(r.source)}</td><td class="mono">${fmt(r.final)}</td>
     <td class="mono g">${fmt(r.paid)}</td><td>${statusBadge(r.status)}</td>
     <td class="mono" style="font-size:11px">${fmtDate(r.date)}</td>
+    <td><button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},&quot;Salon&quot;)'>🧾</button></td>
   </tr>`).join('');
 }
 
@@ -1383,6 +1581,7 @@ function renderBridalTable(sf=''){
     <td class="mono">${fmt(r.total)}</td><td class="mono g">${fmt(r.advance)}</td>
     <td class="mono" style="color:${r.balance>0?'var(--rose)':'var(--green)'}">${fmt(r.balance)}</td>
     <td><span class="badge ${r.status==='Confirmed'?'b-confirmed':r.status==='Completed'?'b-completed':'b-upcoming'}">${r.status}</span></td>
+    <td><button class="btn btn-ghost btn-sm" onclick='showInvoice(${JSON.stringify(r)},"Bridal")'>🧾</button></td>
   </tr>`).join('');
 }
 
@@ -1570,7 +1769,7 @@ function updateSvcSelected(){
 }
 function removeSvc(i){selectedSvcs.splice(i,1);updateSvcSelected();}
 function calcSalon(){const total=selectedSvcs.reduce((s,x)=>s+x.price,0);const disc=parseFloat(gv('s-disc'))||0;if(g('s-final'))g('s-final').value=Math.max(0,total-disc);calcSalonBal();}
-function calcSalonBal(){const final=parseFloat(gv('s-final'))||0;const paid=parseFloat(gv('s-paid'))||0;if(g('s-bal'))g('s-bal').value=Math.max(0,final-paid);}
+function calcSalonBal(){const final=parseFloat(gv('s-final'))||0;const rawSPaid=gv('s-paid'); const paid=rawSPaid===''?final:(parseFloat(rawSPaid)||0);if(g('s-bal'))g('s-bal').value=Math.max(0,final-paid);}
 function calcA(){const fee=parseFloat(gv('a-fee'))||0;const paid=parseFloat(gv('a-paid'))||0;if(g('a-bal'))g('a-bal').value=Math.max(0,fee-paid);const src=gv('a-src');const prev=g('a-soph');if(prev){prev.style.display=SOCIAL.includes(src)&&paid>0?'block':'none';const amtEl=g('a-soph-amt');if(amtEl)amtEl.textContent=fmt(paid*0.1);}}
 function srcChange(srcId,campId,paidId,sophId){if(g(campId))g(campId).style.display=['Facebook Ad','Instagram Ad'].includes(gv(srcId))?'block':'none';calcA();}
 function bridalPkg(v){if(g('br-custom-g'))g('br-custom-g').style.display=v==='custom'?'block':'none';if(g('br-total'))g('br-total').value=v==='custom'?gv('br-custom'):v||'';calcBridal();}
@@ -1605,13 +1804,13 @@ function exportCSV(data,name){
 
 // RESET FORMS
 function resetForm(type){
-  if(type==='academy'){['a-name','a-phone','a-email','a-fee','a-paid','a-bal','a-camp','a-notes'].forEach(id=>{const e=g(id);if(e)e.value='';});if(g('a-src'))g('a-src').value='';if(g('a-course'))g('a-course').value='';if(g('a-soph'))g('a-soph').style.display='none';}
+  if(type==='academy'){['a-name','a-phone','a-email','a-fee','a-paid','a-bal','a-camp','a-notes'].forEach(id=>{const e=g(id);if(e)e.value='';});if(g('a-src'))g('a-src').value='';if(g('a-course'))g('a-course').value='';if(g('a-course-custom')){g('a-course-custom').value='';g('a-course-custom').style.display='none';}if(g('a-soph'))g('a-soph').style.display='none';}
   if(type==='salon'){['s-name','s-phone','s-disc','s-paid','s-bal','s-total','s-final'].forEach(id=>{const e=g(id);if(e)e.value='';});selectedSvcs=[];buildSvcGrid();if(g('s-selected'))g('s-selected').innerHTML='<span style="color:var(--ink3)">No services selected</span>';}
   if(type==='bridal'){['br-name','br-phone','br-venue','br-total','br-advance','br-bal','br-notes','br-custom'].forEach(id=>{const e=g(id);if(e)e.value='';});if(g('br-pkg'))g('br-pkg').value='';if(g('br-custom-g'))g('br-custom-g').style.display='none';}
 }
 
 // NAV
-const PTITLES={dashboard:'Dashboard',academy:'Academy',salon:'Salon Services',bridal:'Bridal Bookings',appointments:'Appointments',dues:'Pending Dues',staff:'Staff Management',sophronix:'Revenue Share',fbexport:'FB Offline Events',delhistory:'Delete History'};
+const PTITLES={dashboard:'Dashboard',academy:'Academy',salon:'Salon Services',bridal:'Bridal Bookings',appointments:'Appointments',dues:'Pending Dues',staff:'Staff Management',sophronix:'Revenue Share',fbexport:'FB Offline Events',delhistory:'Delete History',reminders:'WhatsApp Reminders'};
 function gotoPanel(name,navEl){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
@@ -1646,14 +1845,14 @@ function printDiv(id){const c=g(id).innerHTML;const w=window.open('','_blank');w
 /* ---- LOGIN SCREEN ---- */
 .login-screen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d000d 0%,#1a001a 40%,#2d0020 100%);}
 .login-screen.hidden{display:none;}
-.login-card{width:380px;max-width:95vw;text-align:center;}
-.login-logo{width:90px;height:90px;object-fit:contain;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 20px rgba(255,20,147,0.6));animation:logoGlow 2s ease-in-out infinite alternate;}
+.login-card{width:380px;max-width:95vw;text-align:center;position:relative;z-index:100001;}
+.login-logo{width:90px;height:90px;object-fit:contain;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 20px rgba(255,20,147,0.6));animation:logoGlow 2s ease-in-out infinite alternate;pointer-events:none;}
 @keyframes logoGlow{from{filter:drop-shadow(0 0 10px rgba(255,20,147,0.4));}to{filter:drop-shadow(0 0 28px rgba(255,105,180,0.9));}}
 .login-school{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:3px;}
 .login-sub{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;font-family:'JetBrains Mono',monospace;margin-bottom:28px;}
-.login-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,105,180,0.2);border-radius:16px;padding:28px 24px;backdrop-filter:blur(12px);}
+.login-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,105,180,0.2);border-radius:16px;padding:28px 24px;backdrop-filter:blur(12px);position:relative;z-index:100001;}
 .role-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
-.role-btn{padding:10px 6px;border:1.5px solid rgba(255,255,255,0.1);border-radius:9px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;}
+.role-btn{padding:10px 6px;border:1.5px solid rgba(255,255,255,0.1);border-radius:9px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;pointer-events:all;position:relative;z-index:100001;-webkit-tap-highlight-color:rgba(255,105,180,0.3);}
 .role-btn .role-ic{font-size:20px;display:block;margin-bottom:4px;}
 .role-btn:hover{border-color:rgba(255,105,180,0.4);color:rgba(255,255,255,0.8);}
 .role-btn.selected{border-color:#ff69b4;background:rgba(255,105,180,0.12);color:#fff;}
@@ -1661,8 +1860,8 @@ function printDiv(id){const c=g(id).innerHTML;const w=window.open('','_blank');w
 .pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:20px;}
 .pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,105,180,0.4);background:transparent;transition:all .2s;}
 .pin-dot.filled{background:#ff69b4;border-color:#ff69b4;box-shadow:0 0 8px rgba(255,105,180,0.6);}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.pin-key{height:52px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#fff;font-size:18px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative;z-index:100001;}
+.pin-key{height:52px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#fff;font-size:18px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;pointer-events:all;position:relative;z-index:100000;-webkit-tap-highlight-color:rgba(255,105,180,0.3);}
 .pin-key:hover{background:rgba(255,105,180,0.15);border-color:rgba(255,105,180,0.4);}
 .pin-key:active{transform:scale(0.95);background:rgba(255,105,180,0.25);}
 .pin-key.del{font-size:20px;color:rgba(255,255,255,0.4);}
@@ -1700,6 +1899,377 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Backspace') pinBack();
   if (e.key === 'Escape') pinClear();
 });
+
+
+// ============================================================
+// CUSTOM STAFF ROLE
+// ============================================================
+function checkCustomRole(val) {
+  const customInput = document.getElementById('st-role-custom');
+  if (!customInput) return;
+  customInput.style.display = val === 'custom' ? 'block' : 'none';
+  if (val === 'custom') customInput.focus();
+}
+
+function getStaffRole() {
+  const sel = document.getElementById('st-role');
+  if (!sel) return '';
+  if (sel.value === 'custom') {
+    return document.getElementById('st-role-custom')?.value.trim() || 'Custom Role';
+  }
+  return sel.value;
+}
+
+// ============================================================
+// WHATSAPP REMINDER SYSTEM
+// ============================================================
+let reminderRules = JSON.parse(localStorage.getItem('uk_reminder_rules') || '[]');
+
+const DEFAULT_MESSAGES = {
+  'Hair Cut': 'Namaste {name} ji! Aapko hair cut karvate huye {days} din ho gaye hain. Abhi appointment book karein!\n\nUK International London Beauty School\n99143 13141',
+  'Facial': 'Namaste {name} ji! {days} din pehle aapne facial karvayi thi. Glowing skin ke liye abhi book karein!\n\nUK International London Beauty School\n99143 13141',
+  'Waxing': 'Namaste {name} ji! Aapki waxing ko {days} din ho gaye hain. Smooth skin ke liye abhi appointment lein!\n\nUK International London Beauty School\n99143 13141',
+  'Hair Color': 'Namaste {name} ji! Aapki hair coloring ko {days} din ho gaye hain. Touch-up ke liye abhi book karein!\n\nUK International London Beauty School\n99143 13141',
+  'Mehendi': 'Namaste {name} ji! Aapki mehendi ko {days} din ho gaye hain. Fresh design ke liye abhi book karein!\n\nUK International London Beauty School\n99143 13141',
+  'Cleanup': 'Namaste {name} ji! Aapki cleanup ko {days} din ho gaye hain. Fresh look ke liye abhi book karein!\n\nUK International London Beauty School\n99143 13141',
+  'default': 'Namaste {name} ji! Aapko {service} karvate huye {days} din ho gaye hain. Dobara book karein!\n\nUK International London Beauty School\n99143 13141'
+};
+
+function addReminderRule() {
+  const serviceEl = document.getElementById('rm-service');
+  const service = serviceEl.value === 'custom' 
+    ? (document.getElementById('rm-custom')?.value.trim() || '') 
+    : serviceEl.value;
+  const days = parseInt(document.getElementById('rm-days').value);
+  const msgInput = document.getElementById('rm-message').value.trim();
+  
+  if (!service) { toast('⚠️ Service enter karo', 'w'); return; }
+  
+  const message = msgInput || DEFAULT_MESSAGES[service] || DEFAULT_MESSAGES['default'];
+  
+  // Check if rule already exists
+  const exists = reminderRules.find(r => r.service === service && r.days === days);
+  if (exists) { toast('⚠️ Is service ke liye yeh rule already hai', 'w'); return; }
+  
+  reminderRules.push({ id: Date.now(), service, days, message });
+  localStorage.setItem('uk_reminder_rules', JSON.stringify(reminderRules));
+  
+  document.getElementById('rm-message').value = '';
+  renderReminderRules();
+  generateAllReminders();
+  toast('✅ Reminder rule added!');
+}
+
+function deleteReminderRule(id) {
+  reminderRules = reminderRules.filter(r => r.id !== id);
+  localStorage.setItem('uk_reminder_rules', JSON.stringify(reminderRules));
+  renderReminderRules();
+  generateAllReminders();
+  toast('Rule deleted');
+}
+
+function renderReminderRules() {
+  const tbody = document.getElementById('rm-rules-tbody');
+  if (!tbody) return;
+  if (!reminderRules.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="empty"><div class="ei">📋</div><h3>No rules yet</h3></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = reminderRules.map(r => `
+    <tr>
+      <td><strong>${r.service}</strong></td>
+      <td><span class="badge b-upcoming">${r.days} days</span></td>
+      <td style="font-size:12px;color:var(--ink3);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.message.slice(0,60)}...</td>
+      <td><button class="btn btn-sm" style="background:var(--rose-p);color:var(--rose)" onclick="deleteReminderRule(${r.id})">🗑️</button></td>
+    </tr>`).join('');
+}
+
+function generateAllReminders() {
+  const cont = document.getElementById('rm-due-list');
+  if (!cont) return;
+  if (!reminderRules.length) {
+    cont.innerHTML = '<div class="empty"><div class="ei">💬</div><h3>Pehle rules add karo upar se</h3></div>';
+    return;
+  }
+  
+  const today = new Date();
+  const dueList = [];
+  
+  reminderRules.forEach(rule => {
+    // Check salon records
+    salon.forEach(r => {
+      if (!r.date || !r.name || !r.phone) return;
+      const services = (r.servicesStr || '').toLowerCase();
+      const ruleService = rule.service.toLowerCase();
+      if (!services.includes(ruleService) && ruleService !== 'all') return;
+      const serviceDate = new Date(r.date);
+      const daysDiff = Math.floor((today - serviceDate) / (1000 * 60 * 60 * 24));
+      if (daysDiff >= rule.days && daysDiff <= rule.days + 7) {
+        dueList.push({ client: r.name, phone: r.phone, service: rule.service, days: daysDiff, date: r.date, message: rule.message, module: 'Salon' });
+      }
+    });
+    
+    // Check academy records  
+    academy.forEach(r => {
+      if (!r.date || !r.name || !r.phone) return;
+      if (rule.service !== 'Academy' && rule.service !== 'all') return;
+      const serviceDate = new Date(r.date);
+      const daysDiff = Math.floor((today - serviceDate) / (1000 * 60 * 60 * 24));
+      if (daysDiff >= rule.days && daysDiff <= rule.days + 7) {
+        dueList.push({ client: r.name, phone: r.phone, service: r.course, days: daysDiff, date: r.date, message: rule.message, module: 'Academy' });
+      }
+    });
+  });
+  
+  if (!dueList.length) {
+    cont.innerHTML = '<div class="empty"><div class="ei">✅</div><h3>Koi due reminder nahi abhi</h3><p>Jab clients ki due date aayegi, yahan dikhenge</p></div>';
+    return;
+  }
+  
+  cont.innerHTML = dueList.map(item => {
+    const msg = item.message
+      .replace(/{name}/g, item.client)
+      .replace(/{service}/g, item.service)
+      .replace(/{days}/g, item.days);
+    const waLink = `https://wa.me/91${item.phone}?text=${encodeURIComponent(msg)}`;
+    return `
+      <div class="due-card">
+        <div style="font-size:26px">💬</div>
+        <div class="due-info">
+          <div class="name">${item.client}</div>
+          <div class="meta">${item.module} · ${item.service} · ${item.days} days ago (${fmtDate(item.date)})</div>
+          <div class="meta mono" style="margin-top:2px">📞 ${item.phone}</div>
+          <div style="font-size:11px;color:var(--ink3);margin-top:5px;padding:8px;background:var(--bg2);border-radius:6px;line-height:1.5">${msg.replace(/\n/g,'<br>')}</div>
+        </div>
+        <a href="${waLink}" target="_blank">
+          <button class="btn btn-green btn-sm">💬 Send</button>
+        </a>
+      </div>`;
+  }).join('');
+}
+
+// Init reminder service dropdown custom handling
+document.addEventListener('DOMContentLoaded', () => {
+  const rmSvc = document.getElementById('rm-service');
+  if (rmSvc) {
+    rmSvc.addEventListener('change', (e) => {
+      const cg = document.getElementById('rm-custom-g');
+      if (cg) cg.style.display = e.target.value === 'custom' ? 'block' : 'none';
+      // Auto-fill message template
+      const msgEl = document.getElementById('rm-message');
+      if (msgEl && !msgEl.value) {
+        msgEl.placeholder = DEFAULT_MESSAGES[e.target.value] || DEFAULT_MESSAGES['default'];
+      }
+    });
+  }
+  renderReminderRules();
+});
+
+// ============================================================
+// MULTI-SERVICE CUSTOM BILLING — Enhanced salon bill
+// ============================================================
+// (Already exists via selectedSvcs array + addCustomSvc)
+// Enhancement: allow quantity per service
+
+function updateSvcQty(idx, qty) {
+  if (selectedSvcs[idx]) {
+    selectedSvcs[idx].qty = parseInt(qty) || 1;
+    selectedSvcs[idx].totalPrice = selectedSvcs[idx].basePrice * selectedSvcs[idx].qty;
+    updateSvcSelected();
+  }
+}
+
+// Override toggleSvc to store base price
+const _origToggleSvc = typeof toggleSvc !== 'undefined' ? toggleSvc : null;
+
+// ============================================================
+// APPS SCRIPT CORS FIX — doPost via FormData
+// ============================================================
+// Apps Script now receives FormData → parse 'payload' field
+// No preflight request = no CORS block
+
+
+// ============================================================
+// INVOICE DISPLAY SYSTEM
+// ============================================================
+const INV_LOGO = LOGO_URI; // reuse same logoconst INV_HEADER_STYLE = 'background:linear-gradient(135deg,#1a001a 0%,#2d0a2d 50%,#1a001a 100%);color:#fff;padding:20px 26px 14px;';
+
+function showInvoice(r, module) {
+  document.getElementById('inv-modal-title').textContent = module + ' Invoice';
+  let body = '';
+  const headerHTML = `
+    <div style="${INV_HEADER_STYLE}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="${INV_LOGO}" style="width:50px;height:50px;object-fit:contain">
+          <div>
+            <div style="font-family:sans-serif;font-size:15px;font-weight:800;color:#fff">The UK International</div>
+            <div style="font-size:13px;font-weight:600;color:#ff69b4">London Beauty School™</div>
+          </div>
+        </div>
+        <div style="text-align:right;font-family:monospace">
+          <div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px">${module.toUpperCase()}</div>
+          <div style="font-size:18px;color:#ff69b4;font-weight:700">#${r.id||'—'}</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.35)">${fmtDate(r.date||r.bdate)}</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:10px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.45)">
+        <span>📞 99143 13141 | 98774 94065</span>
+        <span>Opp. Inder Farm, Near Olive Garden, Jandiala Guru, Punjab 143115</span>
+      </div>
+    </div>`;
+
+  if (module === 'Academy') {
+    body = headerHTML + `
+      <div style="padding:20px 26px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;background:#f7f4ef;border-radius:9px;padding:14px">
+          <div><div style="font-size:10px;color:#8A8078;letter-spacing:1px;font-family:monospace">STUDENT</div><div style="font-weight:600;margin-top:3px">${r.name}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;letter-spacing:1px;font-family:monospace">PHONE</div><div style="font-weight:600;margin-top:3px">${r.phone}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;letter-spacing:1px;font-family:monospace">COURSE</div><div style="font-weight:600;margin-top:3px">${r.course}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;letter-spacing:1px;font-family:monospace">DURATION</div><div style="font-weight:600;margin-top:3px">${r.duration}</div></div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:14px">
+          <tr style="background:#f7f4ef"><th style="padding:9px 13px;text-align:left;font-size:10px;font-family:monospace;color:#8A8078">DESCRIPTION</th><th style="padding:9px 13px;text-align:right;font-size:10px;font-family:monospace;color:#8A8078">TOTAL FEE</th><th style="padding:9px 13px;text-align:right;font-size:10px;font-family:monospace;color:#8A8078">PAID</th><th style="padding:9px 13px;text-align:right;font-size:10px;font-family:monospace;color:#8A8078">BALANCE</th></tr>
+          <tr><td style="padding:13px;border-bottom:1px solid #eee">${r.course} — ${r.duration}</td><td style="padding:13px;text-align:right;font-family:monospace;font-weight:600;border-bottom:1px solid #eee">${fmt(r.fee)}</td><td style="padding:13px;text-align:right;font-family:monospace;font-weight:600;color:#1E6641;border-bottom:1px solid #eee">${fmt(r.paid)}</td><td style="padding:13px;text-align:right;font-family:monospace;font-weight:600;color:${r.balance>0?'#C0392B':'#1E6641'};border-bottom:1px solid #eee">${fmt(r.balance)}</td></tr>
+        </table>
+        <div style="background:#F5ECD4;border:1px solid rgba(184,134,11,0.2);border-radius:9px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div><div style="font-size:10px;color:#B8860B;font-family:monospace;letter-spacing:1px">AMOUNT RECEIVED</div><div style="font-size:11px;color:#8A8078;margin-top:2px">Mode: ${r.paymentMode} | Status: ${r.status}</div></div>
+          <div style="font-size:22px;font-weight:800;color:#B8860B">${fmt(r.paid)}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="background:#1A1714;color:#D4A017;font-family:monospace;font-size:9px;padding:3px 9px;border-radius:4px;letter-spacing:1px">SOURCE: ${(r.source||'').toUpperCase()}</span>
+          <span style="font-size:10px;color:#8A8078">${r.sophFee>0?'Sophronix: '+fmt(r.sophFee):'Organic'} · Managed by Sophronix</span>
+        </div>
+      </div>`;
+  } else if (module === 'Salon') {
+    const svcs = r.servicesStr || r.services?.map(s=>s.name).join(', ') || '—';
+    body = headerHTML + `
+      <div style="padding:20px 26px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:16px;background:#f7f4ef;border-radius:9px;padding:14px">
+          <div><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">CLIENT</div><div style="font-weight:600;margin-top:3px">${r.name}</div><div style="font-size:12px;color:#8A8078">${r.phone}</div></div>
+          <div style="text-align:right"><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">STAFF</div><div style="font-weight:600;margin-top:3px">${r.staff||'—'}</div></div>
+        </div>
+        <div style="background:#f7f4ef;border-radius:8px;padding:12px 16px;margin-bottom:14px">
+          <div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px;margin-bottom:6px">SERVICES</div>
+          <div style="font-size:14px;color:#1A1714">${svcs}</div>
+        </div>
+        <div style="background:#F0EAF8;border:1px solid rgba(107,63,160,0.2);border-radius:9px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div><div style="font-size:10px;color:#6B3FA0;font-family:monospace;letter-spacing:1px">FINAL AMOUNT</div><div style="font-size:11px;color:#8A8078;margin-top:2px">Paid: ${fmt(r.paid)} | Balance: ${fmt(r.balance)}${r.discount>0?' | Discount: '+fmt(r.discount):''}</div></div>
+          <div style="font-size:22px;font-weight:800;color:#6B3FA0">${fmt(r.final||r.paid)}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="background:#1A1714;color:#D4A017;font-family:monospace;font-size:9px;padding:3px 9px;border-radius:4px;letter-spacing:1px">SOURCE: ${(r.source||'').toUpperCase()}</span>
+          <span style="font-size:10px;color:#8A8078">Managed by Sophronix</span>
+        </div>
+      </div>`;
+  } else if (module === 'Bridal') {
+    body = headerHTML + `
+      <div style="padding:20px 26px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;background:#f7f4ef;border-radius:9px;padding:14px">
+          <div><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">BRIDE NAME</div><div style="font-weight:600;margin-top:3px">${r.name}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">PHONE</div><div style="font-weight:600;margin-top:3px">${r.phone}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">WEDDING DATE</div><div style="font-weight:600;margin-top:3px;color:#C0185C">${fmtDate(r.wdate)}</div></div>
+          <div><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">VENUE</div><div style="font-weight:600;margin-top:3px">${r.venue||'—'}</div></div>
+          <div style="grid-column:1/-1"><div style="font-size:10px;color:#8A8078;font-family:monospace;letter-spacing:1px">PACKAGE</div><div style="font-weight:600;margin-top:3px">${r.pkg}</div></div>
+        </div>
+        <div style="background:#FDE8F0;border:1px solid rgba(192,24,92,0.2);border-radius:9px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div><div style="font-size:10px;color:#C0185C;font-family:monospace;letter-spacing:1px">ADVANCE PAID</div><div style="font-size:11px;color:#8A8078;margin-top:2px">Balance: ${fmt(r.balance)} | Mode: ${r.paymentMode}</div></div>
+          <div style="font-size:22px;font-weight:800;color:#C0185C">${fmt(r.advance)}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="background:#1A1714;color:#D4A017;font-family:monospace;font-size:9px;padding:3px 9px;border-radius:4px;letter-spacing:1px">SOURCE: ${(r.source||'').toUpperCase()}</span>
+          <span style="font-size:10px;color:#8A8078">Managed by Sophronix</span>
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('inv-content').innerHTML = body;
+  openOverlay('inv-overlay');
+}
+
+// ============================================================
+// PRINT FUNCTION - Fixed for all browsers
+// ============================================================
+function printDiv(id) {
+  const c = document.getElementById(id);
+  if (!c) return;
+  const content = c.innerHTML;
+  const w = window.open('', '_blank');
+  if (!w) { toast('⚠️ Popup blocked! Allow popups for this site', 'w'); return; }
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>UK International Invoice</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:sans-serif;font-size:14px;}@media print{body{margin:0;}@page{margin:10mm;}}</style></head><body>${content}</body></html>`);
+  w.document.close();
+  w.focus();
+  setTimeout(() => { w.print(); }, 800);
+}
+
+
+// ============================================================
+// CUSTOM COURSE — Academy
+// ============================================================
+function checkCustomCourse(val) {
+  const inp = document.getElementById('a-course-custom');
+  if (!inp) return;
+  inp.style.display = val === 'custom' ? 'block' : 'none';
+  if (val === 'custom') inp.focus();
+}
+
+function getAcademyCourse() {
+  const sel = document.getElementById('a-course');
+  if (!sel) return '';
+  if (sel.value === 'custom') {
+    return document.getElementById('a-course-custom')?.value.trim() || '';
+  }
+  return sel.value;
+}
+
+// ============================================================
+// SALON MODE — Standard vs Full Custom
+// ============================================================
+let salonMode = 'standard';
+
+function setSalonMode(mode) {
+  salonMode = mode;
+  const svcGrid = document.getElementById('svc-grid');
+  const stdBtn = document.getElementById('salon-mode-standard');
+  const custBtn = document.getElementById('salon-mode-custom');
+
+  if (mode === 'standard') {
+    if (svcGrid) svcGrid.style.display = 'grid';
+    if (stdBtn) { stdBtn.style.borderColor = 'var(--gold)'; stdBtn.style.color = 'var(--gold)'; }
+    if (custBtn) { custBtn.style.borderColor = ''; custBtn.style.color = ''; }
+    toast('Standard mode — service buttons se select karo');
+  } else {
+    if (svcGrid) svcGrid.style.display = 'none';
+    if (stdBtn) { stdBtn.style.borderColor = ''; stdBtn.style.color = ''; }
+    if (custBtn) { custBtn.style.borderColor = 'var(--gold)'; custBtn.style.color = 'var(--gold)'; }
+    toast('Custom mode — apni services khud type karo');
+  }
+}
+
+// Override addCustomSvc to support qty
+const _origAddCustomSvc = addCustomSvc;
+function addCustomSvc() {
+  const name = document.getElementById('s-custom')?.value.trim();
+  const price = parseFloat(document.getElementById('s-custom-price')?.value) || 0;
+  const qty = parseInt(document.getElementById('s-custom-qty')?.value) || 1;
+
+  if (!name || !price) { toast('⚠️ Service name aur price daalo', 'w'); return; }
+
+  const totalPrice = price * qty;
+  selectedSvcs.push({ name: qty > 1 ? name + ' x' + qty : name, price: totalPrice, basePrice: price, qty });
+
+  const nameEl = document.getElementById('s-custom');
+  const priceEl = document.getElementById('s-custom-price');
+  const qtyEl = document.getElementById('s-custom-qty');
+  if (nameEl) nameEl.value = '';
+  if (priceEl) priceEl.value = '';
+  if (qtyEl) qtyEl.value = '1';
+  updateSvcSelected();
+}
+
+// ============================================================
+// BRIDAL — Custom Package amount
+// ============================================================
 
 </script>
 </body>
