@@ -1245,6 +1245,9 @@ async function apiGet(sheet){
 
 
 
+// ============================================================
+// CORE API — DO NOT REMOVE — required by apiPost/apiUpdate/apiDelete
+// ============================================================
 async function apiCall(body){
   if(typeof IS_DEMO !== 'undefined' && IS_DEMO){
     if(body.action==='insert') return {id: saveDemo(body.sheet, body.row)};
@@ -1252,13 +1255,24 @@ async function apiCall(body){
     if(body.action==='update'){ updateDemo(body.sheet, body.id, body.row); return {success:true}; }
     return {success:true};
   }
-  const encoded = encodeURIComponent(unescape(encodeURIComponent(JSON.stringify(body))));
-  const url = API_URL + '?payload=' + encoded;
-  const res = await fetch(url, {redirect:'follow'});
-  const data = JSON.parse(await res.text());
-  if(!data.success) throw new Error(data.error||'Failed');
-  return data;
+  try {
+    const payload = JSON.stringify(body);
+    const encoded = payload.split('').map(c => {
+      const code = c.charCodeAt(0);
+      return code > 127 ? encodeURIComponent(c) : c;
+    }).join('');
+    const safeEncoded = encodeURIComponent(encoded);
+    const url = 'https://script.google.com/macros/s/AKfycbyTx8Q9re32vQDJIP6EWsT1Vudx2hfcDIUwXzJcZGsLIZUI8TpSuAr1K7oFdvstEBvmkw/exec?payload=' + safeEncoded;
+    const res = await fetch(url, {redirect:'follow'});
+    const text = await res.text();
+    const data = JSON.parse(text);
+    if(!data.success) throw new Error(data.error||'Failed');
+    return data;
+  } catch(err) {
+    throw new Error(err.message||'Connection failed');
+  }
 }
+
 async function apiPost(sheet,row){
   const result = await apiCall({action:'insert',sheet,row});
   return result.id;
