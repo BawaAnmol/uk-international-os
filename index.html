@@ -346,7 +346,6 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
       <button class="nav-item" onclick="gotoPanel('sophronix',this)"><span class="ic">💰</span>Revenue Share</button>
       <button class="nav-item" onclick="gotoPanel('fbexport',this)"><span class="ic">📡</span>FB Offline Events</button>
       <button class="nav-item" onclick="gotoPanel('delhistory',this)" id="nav-delhistory"><span class="ic">🗑️</span>Delete History</button>
-      <button class="nav-item" onclick="gotoPanel('reminders',this)"><span class="ic">💬</span>WA Reminders</button>
     </nav>
     <div class="sidebar-foot">
       <div class="soph-tag">by <strong>SOPHRONIX</strong></div>
@@ -613,19 +612,7 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
             <div class="fsec">👤 Staff Details</div>
             <div class="fg"><label>Name *</label><input id="st-name" placeholder="Full name"></div>
             <div class="fg"><label>Phone *</label><input id="st-phone" type="tel" maxlength="10"></div>
-            <div class="fg"><label>Role *</label><select id="st-role" onchange="checkCustomRole(this.value)">
-                <option value="Makeup Artist">Makeup Artist</option>
-                <option value="Hair Stylist">Hair Stylist</option>
-                <option value="Nail Technician">Nail Technician</option>
-                <option value="Skin Care Expert">Skin Care Expert</option>
-                <option value="Facial Expert">Facial Expert</option>
-                <option value="Mehendi Artist">Mehendi Artist</option>
-                <option value="Receptionist">Receptionist</option>
-                <option value="Trainer">Trainer</option>
-                <option value="Manager">Manager</option>
-                <option value="custom">✏️ Custom Role (type below)</option>
-              </select>
-              <input id="st-role-custom" placeholder="Type custom role name..." style="display:none;margin-top:6px;padding:10px 12px;border:1.5px solid var(--border);border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:14px;width:100%;outline:none;"></div>
+            <div class="fg"><label>Role *</label><select id="st-role"><option>Makeup Artist</option><option>Hair Stylist</option><option>Nail Technician</option><option>Skin Care Expert</option><option>Receptionist</option><option>Trainer</option></select></div>
             <div class="fg"><label>Salary (₹/month)</label><input id="st-salary" type="number"></div>
             <div class="fg"><label>Joining Date</label><input id="st-jdate" type="date"></div>
             <div class="fg"><label>Status</label><select id="st-status"><option>Active</option><option>On Leave</option><option>Resigned</option></select></div>
@@ -694,77 +681,6 @@ tbody tr:hover td{background:rgba(184,134,11,0.025);}
         <div class="stat"><div class="acc" style="background:var(--ink3)"></div><div class="stat-lbl">Last Delete</div><div class="stat-val" style="font-size:14px" id="dh-last">—</div></div>
       </div>
       <div id="del-history-list" style="margin-top:4px"></div>
-    </div>
-
-
-    <!-- WHATSAPP REMINDERS -->
-    <div class="panel" id="panel-reminders">
-      <div style="margin-bottom:20px">
-        <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800">WhatsApp Reminders</h2>
-        <p style="color:var(--ink3);font-size:13px;margin-top:3px">Clients ko service ke baad reminders bhejo — ek click mein WhatsApp khulega</p>
-      </div>
-
-      <!-- REMINDER RULES -->
-      <div style="background:#fff;border-radius:12px;border:1px solid var(--border);padding:22px;margin-bottom:20px">
-        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px">Reminder Rules Setup</h3>
-        <div class="grid2">
-          <div class="fg">
-            <label>Service / Course</label>
-            <select id="rm-service">
-              <option value="Hair Cut">✂️ Hair Cut</option>
-              <option value="Facial">🧖 Facial</option>
-              <option value="Waxing">💆 Waxing</option>
-              <option value="Hair Color">🎨 Hair Color</option>
-              <option value="Mehendi">🌿 Mehendi</option>
-              <option value="Manicure">💅 Manicure/Pedicure</option>
-              <option value="Cleanup">✨ Cleanup</option>
-              <option value="Academy">🎓 Academy Course</option>
-              <option value="Bridal">👰 Bridal Package</option>
-              <option value="custom">✏️ Custom Service</option>
-            </select>
-          </div>
-          <div class="fg" id="rm-custom-g" style="display:none">
-            <label>Custom Service Name</label>
-            <input id="rm-custom" placeholder="e.g. Smoothening, Keratin...">
-          </div>
-          <div class="fg">
-            <label>Remind After (Days)</label>
-            <select id="rm-days">
-              <option value="7">7 days (1 week)</option>
-              <option value="14" selected>14 days (2 weeks)</option>
-              <option value="21">21 days (3 weeks)</option>
-              <option value="30">30 days (1 month)</option>
-              <option value="45">45 days</option>
-              <option value="60">60 days (2 months)</option>
-              <option value="90">90 days (3 months)</option>
-            </select>
-          </div>
-          <div class="fg gcol2">
-            <label>Custom WhatsApp Message</label>
-            <textarea id="rm-message" style="min-height:90px" placeholder="Namaste {name} ji! Aapko {service} karvate huye {days} ho gaye hain. Ab book karein! 📅"></textarea>
-          </div>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:4px">
-          <button class="btn btn-primary" onclick="addReminderRule()" style="flex:1;justify-content:center">+ Add Reminder Rule</button>
-          <button class="btn btn-ghost" onclick="generateAllReminders()">🔄 Check All Due Now</button>
-        </div>
-      </div>
-
-      <!-- ACTIVE RULES -->
-      <div class="tw" style="margin-bottom:20px">
-        <div class="tw-head"><h3>Active Reminder Rules</h3></div>
-        <table><thead><tr><th>Service</th><th>Remind After</th><th>Message Preview</th><th></th></tr></thead>
-        <tbody id="rm-rules-tbody"></tbody></table>
-      </div>
-
-      <!-- DUE REMINDERS -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <h3 style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700">Due Reminders Today</h3>
-        <span style="font-size:12px;color:var(--ink3)">Click 💬 to open WhatsApp directly</span>
-      </div>
-      <div id="rm-due-list">
-        <div class="empty"><div class="ei">💬</div><h3>Add rules above to see due reminders</h3></div>
-      </div>
     </div>
 
 </main>
@@ -1169,25 +1085,16 @@ function stopSync(ok){ g('sync-bar').classList.remove('loading'); setConnStatus(
 
 async function apiGet(sheet){
   if(IS_DEMO) return loadDemo(sheet);
-  const res = await fetch(`${API_URL}?action=getAll&sheet=${sheet}`,{
-    method:'GET',
-    redirect:'follow'
-  });
-  const text = await res.text();
-  const data = JSON.parse(text);
+  const res = await fetch(`${API_URL}?action=getAll&sheet=${sheet}`);
+  const data = await res.json();
   if(!data.success) throw new Error(data.error);
   return data.data;
 }
 
 async function apiPost(sheet,row){
   if(IS_DEMO){ return saveDemo(sheet,row); }
-  // CORS FIX: Google Apps Script needs form-urlencoded (no preflight trigger)
-  const payload = JSON.stringify({action:'insert',sheet,row});
-  const formData = new FormData();
-  formData.append('payload', payload);
-  const res = await fetch(API_URL, {method:'POST', body: formData});
-  const text = await res.text();
-  const data = JSON.parse(text);
+  const res = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'insert',sheet,row})});
+  const data = await res.json();
   if(!data.success) throw new Error(data.error||'Save failed');
   return data.id;
 }
@@ -1386,9 +1293,7 @@ async function submitStaff(){
     row.id=id;row.name=name;row.phone=phone;row.role=gv('st-role');row.salary=parseFloat(gv('st-salary'))||0;row.status=gv('st-status');
     staff.push(row); renderStaff(); updateStaffDropdowns();
     toast('✅ Staff saved!');
-    ['st-name','st-phone','st-salary','st-role-custom'].forEach(id=>g(id)?g(id).value='':'');
-  if(g('st-role'))g('st-role').value='Makeup Artist';
-  if(g('st-role-custom'))g('st-role-custom').style.display='none';
+    ['st-name','st-phone','st-salary'].forEach(id=>g(id)?g(id).value='':'');
   }catch(err){toast('❌ Save failed: '+err.message,'w');}
   setBtnLoading('st-submit-btn',false);
 }
@@ -1706,7 +1611,7 @@ function resetForm(type){
 }
 
 // NAV
-const PTITLES={dashboard:'Dashboard',academy:'Academy',salon:'Salon Services',bridal:'Bridal Bookings',appointments:'Appointments',dues:'Pending Dues',staff:'Staff Management',sophronix:'Revenue Share',fbexport:'FB Offline Events',delhistory:'Delete History',reminders:'WhatsApp Reminders'};
+const PTITLES={dashboard:'Dashboard',academy:'Academy',salon:'Salon Services',bridal:'Bridal Bookings',appointments:'Appointments',dues:'Pending Dues',staff:'Staff Management',sophronix:'Revenue Share',fbexport:'FB Offline Events',delhistory:'Delete History'};
 function gotoPanel(name,navEl){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
@@ -1795,207 +1700,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Backspace') pinBack();
   if (e.key === 'Escape') pinClear();
 });
-
-
-// ============================================================
-// CUSTOM STAFF ROLE
-// ============================================================
-function checkCustomRole(val) {
-  const customInput = document.getElementById('st-role-custom');
-  if (!customInput) return;
-  customInput.style.display = val === 'custom' ? 'block' : 'none';
-  if (val === 'custom') customInput.focus();
-}
-
-function getStaffRole() {
-  const sel = document.getElementById('st-role');
-  if (!sel) return '';
-  if (sel.value === 'custom') {
-    return document.getElementById('st-role-custom')?.value.trim() || 'Custom Role';
-  }
-  return sel.value;
-}
-
-// ============================================================
-// WHATSAPP REMINDER SYSTEM
-// ============================================================
-let reminderRules = JSON.parse(localStorage.getItem('uk_reminder_rules') || '[]');
-
-const DEFAULT_MESSAGES = {
-  'Hair Cut': 'Namaste {name} ji! ✂️ Aapko hair cut karvate huye {days} din ho gaye hain. Abhi appointment book karein!
-
-📍 UK International London Beauty School
-📞 99143 13141',
-  'Facial': 'Namaste {name} ji! 🧖 {days} din pehle aapne facial karvayi thi. Glowing skin ke liye abhi book karein!
-
-📍 UK International London Beauty School
-📞 99143 13141',
-  'Waxing': 'Namaste {name} ji! 💆 Aapki waxing ko {days} din ho gaye hain. Smooth skin ke liye abhi appointment lein!
-
-📍 UK International London Beauty School
-📞 99143 13141',
-  'Hair Color': 'Namaste {name} ji! 🎨 Aapki hair coloring ko {days} din ho gaye hain. Touch-up ke liye abhi book karein!
-
-📍 UK International London Beauty School
-📞 99143 13141',
-  'default': 'Namaste {name} ji! 😊 Aapko {service} karvate huye {days} din ho gaye hain. Dobara book karein!
-
-📍 UK International London Beauty School
-📞 99143 13141'
-};
-
-function addReminderRule() {
-  const serviceEl = document.getElementById('rm-service');
-  const service = serviceEl.value === 'custom' 
-    ? (document.getElementById('rm-custom')?.value.trim() || '') 
-    : serviceEl.value;
-  const days = parseInt(document.getElementById('rm-days').value);
-  const msgInput = document.getElementById('rm-message').value.trim();
-  
-  if (!service) { toast('⚠️ Service enter karo', 'w'); return; }
-  
-  const message = msgInput || DEFAULT_MESSAGES[service] || DEFAULT_MESSAGES['default'];
-  
-  // Check if rule already exists
-  const exists = reminderRules.find(r => r.service === service && r.days === days);
-  if (exists) { toast('⚠️ Is service ke liye yeh rule already hai', 'w'); return; }
-  
-  reminderRules.push({ id: Date.now(), service, days, message });
-  localStorage.setItem('uk_reminder_rules', JSON.stringify(reminderRules));
-  
-  document.getElementById('rm-message').value = '';
-  renderReminderRules();
-  generateAllReminders();
-  toast('✅ Reminder rule added!');
-}
-
-function deleteReminderRule(id) {
-  reminderRules = reminderRules.filter(r => r.id !== id);
-  localStorage.setItem('uk_reminder_rules', JSON.stringify(reminderRules));
-  renderReminderRules();
-  generateAllReminders();
-  toast('Rule deleted');
-}
-
-function renderReminderRules() {
-  const tbody = document.getElementById('rm-rules-tbody');
-  if (!tbody) return;
-  if (!reminderRules.length) {
-    tbody.innerHTML = '<tr><td colspan="4"><div class="empty"><div class="ei">📋</div><h3>No rules yet</h3></div></td></tr>';
-    return;
-  }
-  tbody.innerHTML = reminderRules.map(r => `
-    <tr>
-      <td><strong>${r.service}</strong></td>
-      <td><span class="badge b-upcoming">${r.days} days</span></td>
-      <td style="font-size:12px;color:var(--ink3);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.message.slice(0,60)}...</td>
-      <td><button class="btn btn-sm" style="background:var(--rose-p);color:var(--rose)" onclick="deleteReminderRule(${r.id})">🗑️</button></td>
-    </tr>`).join('');
-}
-
-function generateAllReminders() {
-  const cont = document.getElementById('rm-due-list');
-  if (!cont) return;
-  if (!reminderRules.length) {
-    cont.innerHTML = '<div class="empty"><div class="ei">💬</div><h3>Pehle rules add karo upar se</h3></div>';
-    return;
-  }
-  
-  const today = new Date();
-  const dueList = [];
-  
-  reminderRules.forEach(rule => {
-    // Check salon records
-    salon.forEach(r => {
-      if (!r.date || !r.name || !r.phone) return;
-      const services = (r.servicesStr || '').toLowerCase();
-      const ruleService = rule.service.toLowerCase();
-      if (!services.includes(ruleService) && ruleService !== 'all') return;
-      const serviceDate = new Date(r.date);
-      const daysDiff = Math.floor((today - serviceDate) / (1000 * 60 * 60 * 24));
-      if (daysDiff >= rule.days && daysDiff <= rule.days + 7) {
-        dueList.push({ client: r.name, phone: r.phone, service: rule.service, days: daysDiff, date: r.date, message: rule.message, module: 'Salon' });
-      }
-    });
-    
-    // Check academy records  
-    academy.forEach(r => {
-      if (!r.date || !r.name || !r.phone) return;
-      if (rule.service !== 'Academy' && rule.service !== 'all') return;
-      const serviceDate = new Date(r.date);
-      const daysDiff = Math.floor((today - serviceDate) / (1000 * 60 * 60 * 24));
-      if (daysDiff >= rule.days && daysDiff <= rule.days + 7) {
-        dueList.push({ client: r.name, phone: r.phone, service: r.course, days: daysDiff, date: r.date, message: rule.message, module: 'Academy' });
-      }
-    });
-  });
-  
-  if (!dueList.length) {
-    cont.innerHTML = '<div class="empty"><div class="ei">✅</div><h3>Koi due reminder nahi abhi</h3><p>Jab clients ki due date aayegi, yahan dikhenge</p></div>';
-    return;
-  }
-  
-  cont.innerHTML = dueList.map(item => {
-    const msg = item.message
-      .replace(/{name}/g, item.client)
-      .replace(/{service}/g, item.service)
-      .replace(/{days}/g, item.days);
-    const waLink = `https://wa.me/91${item.phone}?text=${encodeURIComponent(msg)}`;
-    return `
-      <div class="due-card">
-        <div style="font-size:26px">💬</div>
-        <div class="due-info">
-          <div class="name">${item.client}</div>
-          <div class="meta">${item.module} · ${item.service} · ${item.days} days ago (${fmtDate(item.date)})</div>
-          <div class="meta mono" style="margin-top:2px">📞 ${item.phone}</div>
-          <div style="font-size:11px;color:var(--ink3);margin-top:5px;padding:8px;background:var(--bg2);border-radius:6px;line-height:1.5">${msg.replace(/\n/g,'<br>')}</div>
-        </div>
-        <a href="${waLink}" target="_blank">
-          <button class="btn btn-green btn-sm">💬 Send</button>
-        </a>
-      </div>`;
-  }).join('');
-}
-
-// Init reminder service dropdown custom handling
-document.addEventListener('DOMContentLoaded', () => {
-  const rmSvc = document.getElementById('rm-service');
-  if (rmSvc) {
-    rmSvc.addEventListener('change', (e) => {
-      const cg = document.getElementById('rm-custom-g');
-      if (cg) cg.style.display = e.target.value === 'custom' ? 'block' : 'none';
-      // Auto-fill message template
-      const msgEl = document.getElementById('rm-message');
-      if (msgEl && !msgEl.value) {
-        msgEl.placeholder = DEFAULT_MESSAGES[e.target.value] || DEFAULT_MESSAGES['default'];
-      }
-    });
-  }
-  renderReminderRules();
-});
-
-// ============================================================
-// MULTI-SERVICE CUSTOM BILLING — Enhanced salon bill
-// ============================================================
-// (Already exists via selectedSvcs array + addCustomSvc)
-// Enhancement: allow quantity per service
-
-function updateSvcQty(idx, qty) {
-  if (selectedSvcs[idx]) {
-    selectedSvcs[idx].qty = parseInt(qty) || 1;
-    selectedSvcs[idx].totalPrice = selectedSvcs[idx].basePrice * selectedSvcs[idx].qty;
-    updateSvcSelected();
-  }
-}
-
-// Override toggleSvc to store base price
-const _origToggleSvc = typeof toggleSvc !== 'undefined' ? toggleSvc : null;
-
-// ============================================================
-// APPS SCRIPT CORS FIX — doPost via FormData
-// ============================================================
-// Apps Script now receives FormData → parse 'payload' field
-// No preflight request = no CORS block
 
 </script>
 </body>
